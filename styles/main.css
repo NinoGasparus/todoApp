@@ -75,3 +75,40 @@ position:absolute;
 	display:flex;
 	flex-direction:column;
 }
+
+
+#userActions{
+	display:none;
+	flex-direction:column;
+	border:1px solid var(--g1);
+	position:absolute;
+	font-size:small;
+	right:var(--gp);
+	background-color:var(--bg);
+	top:calc(5vh + 2 * var(--gp));
+	border-radius:var(--gbr);
+
+}
+#userActions button {
+
+	background-color:var(--bg);
+	border-radius:var(--gbr);
+	border:1px  solid  var(--g1);
+	font-size:larger;
+	padding:var(--gp);
+	width:100%;
+	padding-top:calc(var(--gp) / 2);
+	padding-bottom:calc(var(--gp) / 2);
+	color:var(--wh);
+	display:flex;
+	
+}
+
+
+#userActions button:hover{
+
+	background-color:var(--fg);
+
+
+}
+

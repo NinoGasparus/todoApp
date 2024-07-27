@@ -58,6 +58,7 @@ if($status != 0){
 	
 }else{
 	echo "ok";
+	Header("Location: /index.php");
 }
 
 
