@@ -1,0 +1,44 @@
+.task {
+	background-color: var(--fg);
+	display: flex;
+	flex-direction: column;
+	border: 2px solid var(--g1);
+	height: fit-content;
+	width: auto;
+	min-width: 50%;
+	max-width: 90vw;
+	overflow-x: auto;
+	margin: var(--gm);
+	margin-left: 0px;
+	border-radius: var(--gbr);
+	margin-top: 0px;
+	padding: var(--gp);
+	padding-top: 0px;
+	box-sizing: border-box;
+}
+
+.taskTimeStamp{
+color: var(--wh);
+	padding-top:var(--gp);
+	position:relative;
+	bottom:0px;
+	right:auto;
+}
+
+
+
+.completeTask button{
+	padding-left:var(--gp);
+	padding-right:var(--gp);
+	padding-top:calc(var(--gp) / 2);
+	padding-bottom:calc(var(--gp) / 2);
+
+	margin-top:var(--gp);
+	background-color:var(--bg);
+	border-radius:var(--gbr);
+	font-size:larger;
+	
+	border:1px solid  var(--g1);
+	color:var(--g1);
+
+}

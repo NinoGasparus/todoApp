@@ -1,0 +1,77 @@
+
+
+#sidebar{
+display:flex;
+width:10%;
+
+background-color:var(--fg);
+border:1px solid var(--g1);
+margin:var(--gm);
+margin-top:0px;
+overflow-y:auto;
+border-radius:var(--gbr)
+
+}
+
+#sidebar button{
+	
+	background-color:var(--bg);
+	border-radius:var(--gbr);
+	border:1px  solid  var(--g1);
+	font-size:larger;
+	padding:var(--gp);
+	width:100%;
+	padding-top:calc(var(--gp) / 2);
+	padding-bottom:calc(var(--gp) / 2);
+	color:var(--wh);
+	display:flex;
+	
+}
+.importanceClass1{
+	background-color:var(--gray) !important;
+}
+.importanceClass2{
+	background-color:var(--green) !important;
+}
+.importanceClass3{
+	background-color:var(--yellow) !important;
+}
+.importanceClass4{
+	background-color:var(--orange) !important;
+}
+.importanceClass5{
+	background-color:var(--red) !important;
+}
+
+#createButton{
+	
+
+	background-color:var(--bg);
+	border-radius:var(--gbr);
+	border:1px  solid  var(--g1);
+	font-size:larger;
+	padding:var(--gp);
+
+	padding-top:calc(var(--gp) / 2);
+	padding-bottom:calc(var(--gp) / 2);
+	color:var(--wh);
+	display:flex;
+	
+}
+
+#createTaskMenu{
+background-color:red;
+padding:var(--gp);
+
+position:absolute;
+
+
+}
+#createTaskMenu h2{
+	padding:0px !important;
+	margin:0px !important;
+}
+#createTaskMenu form{
+	display:flex;
+	flex-direction:column;
+}

@@ -1,0 +1,97 @@
+#loginbox{
+align-self:center;
+justify-self:center;
+background-color:red;
+display:flex;
+margin-left:auto;
+margin-right:auto;
+flex-direction:column;
+background-color:var(--fg);
+padding:calc(var(--gp) * 2);
+border-radius:var(--gbr);
+width:33.3vw;
+height:80vh;
+}
+
+
+#loginbox  form {
+flex-direction:column;
+display:flex;
+}
+
+
+#loginbox  form *:focus{
+	outline:3px solid var(--g2)
+}
+
+
+
+#loginbox  form *:not(button, p) {
+ margin: var(--gm);
+ height:2vh;
+ background-color:var(--bg);
+ color:white;
+ border:1px solid var(--g1);
+ border-radius:var(--gbr);
+font-size:large;
+ padding: var(--gp);
+}
+
+
+
+#loginbox  form button {
+
+text-justify:center;
+width:20%;
+align-self:center;
+padding:var(--gp);
+border-radius:var(--gbr);
+color:var(--wh);
+background-color:var(--bg);
+border-radius:var(--gbr);
+padding-left:var(--gp);
+padding-right:var(--gp);
+height:calc(5vh - 2px);
+display:flex;
+justify-content:center;
+align-items:center;
+border:1px solid var(--g1);
+padding-bottom:var(--gp);
+padding-top:var(--gp);
+
+
+}
+.markDiv{
+color:var(--wh);
+
+background-color:var(--bg);
+border-radius:var(--gbr);
+padding-left:var(--gp);
+padding-right:var(--gp);
+height:calc(5vh - 2px);
+display:flex;
+justify-items:center;
+align-items:center;
+border:1px solid var(--g1);
+
+}
+
+
+#loginbox #accountActions{
+
+	padding:var(--gp);
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+	margin-top:auto;
+	text-decoration:underline;
+	color:var(--g2);
+
+}
+ a{
+	color:var(--g2);
+}
+a:visited{
+	color:var(--g2);
+}
+
