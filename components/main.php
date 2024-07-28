@@ -36,7 +36,7 @@
 		$importance = "importanceClass".$row["importance"];
 		$complete = $row["complete"];
 		$taskID = $_SESSION["uid"]."_".$row["taskId"];
-			
+		$taskIntID = $row["taskId"];
 		$ends =  $row["ends"];
 		
 		$today = new DateTime();
@@ -49,7 +49,9 @@
 					<div>$text </div>
 					<div style='display:flex; flex-direction:row'>
 						<div class='completeTask'>
-							<button> Mark as complete </button>
+							<form action='components/completeTask.php' method='POST'>
+								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
+							</form>
 							 <p style='color:red; font-weight:bold'>$timeLeft days left </p> 
 
 						</div>

@@ -13,5 +13,8 @@ Todo:
 	-completed tasks view,  
 	-user account settings,  
 	-admin,  
-	-ui and ux improvements  
+	-ui and ux improvements 
+
+Future plans:
+	-sharing tasks among users, 
 
