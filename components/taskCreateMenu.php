@@ -85,6 +85,6 @@
 <div id="userActions">
 	<a href="components/logOut.php"><button>Log out</button></a>
 	<a href="components/settings.php"><button>Account settings</button></a>
-	<a href="components/taskList.php"><button>Completed tasks</button></a>
+	<a href="/index.php?displayMode=1"><button>Completed tasks</button></a>
 
 </div>

@@ -2,8 +2,8 @@
 	<div class="markDiv"><a href="/index.php"> Todo<sup>2</sup></a></div>
 
 <div id="searchbar">
-	<form action="" method="POST">
-	
+	<form action="" method="GET"> 
+		
 		<input type="text" name="searchquery" placeholder="Type here to search" > </input>
 		
 		<button type="submit"> Find </button>

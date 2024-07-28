@@ -5,12 +5,12 @@ Current functionality:
 	-user account logging in and out,  
 	-password resetting,  
 	-new task creation (basic),  
+	-task completion,  
 	-displaying said task  
-
+	-completed tasks view,
+	-searching tasks
 Todo:  
 	-more task types,  
-	-task completion,  
-	-completed tasks view,  
 	-user account settings,  
 	-admin,  
 	-ui and ux improvements 

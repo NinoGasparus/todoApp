@@ -1,23 +1,56 @@
 <div id="taskcontainer" style="overflow-y:auto; width:100%">
 
+<?php 
+?>
 
 <?php
+	// 0->active tasks, 1-> completed tasks, 2-> search tasks
+		
+	$displayMode = 0;
+
+	if(empty($_GET)){	
+	}else if(isSet($_GET["displayMode"])){
+		if($_GET["displayMode"] == 1);
+		{
+			$displayMode = 1;
+		}
+	}else if(isSet($_GET["searchquery"])){
+		if($_GET["searchquery"] != ""){
+			$displayMode = 2;
+		}
+	}
+
+
 	if(!isSet($_SESSION["uid"])){goto end;};
 
 	if($_SESSION["uid"] && $_SESSION["uid"] != ""){
 		$uid = $_SESSION["uid"];
-		$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY ends DESC,  importance DESC";
+		
+		$query ="";
+		if($displayMode == 0){
+			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY ends DESC,  importance DESC";
+		}else if($displayMode == 1){
+			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 1 ORDER BY ends";
+		}else if($displayMode == 2){
+			$keyword = strtolower($conn->real_escape_string($_GET["searchquery"]));
+			$query = "SELECT * FROM tasks WHERE LOWER(title) LIKE '%$keyword%' OR LOWER(text) LIKE '%$keyword%'";
+		}
+
 		$res = mysqli_query($conn, $query);
 		
 		$rowCount = mysqli_num_rows($res);
 		if($rowCount == 0){
-			echo "No tasks found, create one";
+			switch($displayMode){
+				case 0:	echo "No tasks found, create one";break;
+				case 1: echo "No completed tasks";break;
+				case 2: echo "No matches found";break;
+			}
 		}else{
 			for($i = 0; $i < $rowCount;  $i++){
 				$row = mysqli_fetch_array($res);
 				$taskType = $row["typeof"];
 					switch($taskType){
-						case "1": makeTask1($row);break;
+						case "1": makeTask1($row,$displayMode);break;
 					}
 	
 			}
@@ -29,7 +62,7 @@
 	}
 	
 
-	function makeTask1($row){
+	function makeTask1($row, $displayMode){
 		$title = $row["title"];
 		$text = $row["text"];
 		$timeCreated = $row["timeCreated"];
@@ -48,13 +81,15 @@
 				<h1 class='taskTitle' id='$taskID'> $title </h1>
 					<div>$text </div>
 					<div style='display:flex; flex-direction:row'>
-						<div class='completeTask'>
+						<div class='completeTask'>";
+		if($displayMode == 0){
+			echo "
 							<form action='components/completeTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
-							 <p style='color:red; font-weight:bold'>$timeLeft days left </p> 
+							<p style='color:red; font-weight:bold'>$timeLeft days left </p>";}
 
-						</div>
+			echo "			</div>
 	
 						<div style='margin-left:auto' class='taskTimeStamp'>
 							Created on $timeCreated	

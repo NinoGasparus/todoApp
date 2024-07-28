@@ -31,6 +31,7 @@ include "components/nav.php";
 <div style="display:flex;height:91vh">
 
 	<?php
+	
 		include "components/side.php";
 		include "components/main.php";
 		include "components/taskCreateMenu.php";
