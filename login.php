@@ -84,14 +84,24 @@ try{
 				//store cookie in db as valid login token
 				$query = "INSERT INTO cookies(user_id, value) VALUES ('$userID', '$rngToken')";
 				mysqli_query($conn, $query);
-				mysqli_close($conn);
 			}
 		}
 
-		
 		session_start();
 		$_SESSION["uid"] =  $userID;
 		$_SESSION["username"] = $username;
+		
+
+		//admin check
+
+		$query =  "SELECT isAdmin FROM user WHERE id = '$userID'";
+		$res =  mysqli_query($conn, $query);
+		$isAdmin = mysqli_fetch_array($res)["isAdmin"];
+
+		if($isAdmin == 1){
+			$_SESSION["isAdmin"] = 1;
+		}
+		
 		$status = 0;
 
 		//if all went well you log in and get redirected to main page
@@ -105,6 +115,7 @@ try{
 	die;
 }
 end:
+mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html> 

@@ -1,0 +1,13 @@
+#main{
+	display:flex;
+	height:91vh;
+}
+#main * {
+
+}
+#panel{
+	width:90%;
+}
+#sidebar{
+	flex-direction:column !important;
+}
