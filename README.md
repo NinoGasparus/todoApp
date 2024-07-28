@@ -8,7 +8,7 @@ Current functionality:
 	-task completion,  
 	-displaying said task  
 	-completed tasks view,
-	-searching tasks
+	-searching tasks  
 Todo:  
 	-more task types,  
 	-user account settings,  
