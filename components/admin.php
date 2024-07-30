@@ -7,10 +7,23 @@
 	<link rel="stylesheet" href="/styles/admin.css">
 <script>
 
+	//get GET parameters
+	function GET(keyword){
+		let url =  new URLSearchParams(window.location.search);
+		return url.get(keyword);
+
+	}
+
 document.addEventListener('DOMContentLoaded', function(){
 	//simulate click of first button so that page loads correctly
-	document.querySelector("#sidebar button").click();
 	
+	let target =  "#selector0";
+	if(GET("display") != ""){
+		target =  "#selector"+GET("display");
+	}
+
+	document.querySelector(target).click();
+		
 	
 	const userActionsButton = document.getElementById("usermenu");
 	const userActionsMenu = document.getElementById("userActions");
@@ -48,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function(){
 				event.target.submit();
             		}            
 	});
-	
+
+
 
 	
 
@@ -56,8 +70,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 function showPanel(id, sender){
-	console.log(sender);
 	let buttons = document.getElementsByClassName("panelSelector");
+	
+	
+	let senderID = sender.id[sender.id.length-1];
+	history.pushState(null, '', window.location.pathname+"?display="+senderID);
+
 	for(let  i of buttons){
 		if(i == sender){
 			i.style.backgroundColor = "var(--orange)";
@@ -87,9 +105,9 @@ session_write_close();
 ?>
 <div id="main">
 	<div id="sidebar">
-		<button onClick="showPanel(1,this)" class="panelSelector">Edit users </button>
-		<button onClick="showPanel(2,this)" class="panelSelector">Search tasks</button>
-		<button onClick="showPanel(3,this)" class="panelSelector">Database access</button>
+		<button onClick="showPanel(1,this)" class="panelSelector" id="selector0">Edit users </button>
+		<button onClick="showPanel(2,this)" class="panelSelector" id="selector1">Search tasks</button>
+		<button onClick="showPanel(3,this)" class="panelSelector" id="selector2">Database access</button>
 	</div>
 	<div id="panel">
 		<div id="cp1" class="panel">
