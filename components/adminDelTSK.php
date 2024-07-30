@@ -1,3 +1,7 @@
+bingus
+
+
+
 <?php
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -18,22 +22,9 @@ try{
 	}
 
 	$uid = $conn->real_escape_string($_POST["targetID"]);
-	$query = "SELECT username FROM user WHERE id = '$uid'";
-	
-	$res = mysqli_query($conn, $query);
-	if(mysqli_num_rows($res) != 1){
-		$status = 4;
-		goto end;
-	}
-
-	$query = "DELETE FROM cookies WHERE user_id = '$uid'";
+	$query = "DELETE FROM tasks WHERE taskId = '$uid'";
 	mysqli_query($conn, $query);
 
-	$query = "DELETE FROM tasks WHERE user_id = '$uid'";
-	mysqli_query($conn, $query);
-
-	$query = "DELETE FROM  user WHERE id = '$uid'";
-	mysqli_query($conn, $query);
 	
 	mysqli_close($conn);
 	
@@ -51,7 +42,7 @@ end:
 //	
 //	
 	if($status != 0){	
-	//	echo $status;
+		echo $status;
 		Header("Location: /err.php");
 	}
 	else{

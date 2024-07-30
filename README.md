@@ -1,4 +1,5 @@
-A todo app in php
+A
+        width:100%; todo app in php
 
 Current functionality:
 	-user account creation,  
@@ -19,6 +20,7 @@ Todo:
 	--Add redirections to err.php whenever error occurs,  
 	--close the session within navbar after use and fix all dependencies which might broken. 
 	--comment code,  
+	--add scrolling to displays in admin,  
 Future plans:
 	-sharing tasks among users, 
 

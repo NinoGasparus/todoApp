@@ -16,24 +16,28 @@
 	width:15%;
 }
 
-#cp1 table{
+table{
+	width:100%;
+	
+
+}
+.scroller{
+	overflow-y:auto;
+}
+table tr{
 	width:100%;
 
 }
-#cp1 table tr{
-	width:100%;
-
-}
 
 
-#cp1 table tr:first-of-type{
+table tr:first-of-type{
 	position:relative;
 }
-#cp1 table tr:first-of-type td{
+table tr:first-of-type td{
 	position:  relative;
 
 }
-#cp1 table tr:first-of-type:before{	
+table tr:first-of-type:before{	
  	content: "";
         position: absolute;
         top: 0;
@@ -45,7 +49,7 @@
 	
 }
 
-#cp1 table tr td{
+table tr td{
 	width:calc(100% / 8);
 	background-color:red;
 }
