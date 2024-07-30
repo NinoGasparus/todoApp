@@ -10,7 +10,7 @@ Current functionality:
 	-completed tasks view,
 	-searching tasks,  
 	-deleting completed tasks,  
-  
+ 	--add selected item highlighting    
 Todo:  
 	-more task types,  
 	-user account settings,  
@@ -18,7 +18,7 @@ Todo:
 	-ui and ux improvements  
 	--Add redirections to err.php whenever error occurs,  
 	--close the session within navbar after use and fix all dependencies which might broken. 
-  
+	--comment code,  
 Future plans:
 	-sharing tasks among users, 
 

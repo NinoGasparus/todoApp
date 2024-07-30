@@ -43,10 +43,10 @@ try{
 		$userID = mysqli_fetch_array($verifyID)["id"];
 
 		//obtain MD5 hashed password of the user
-		$query = "SELECT password FROM user WHERE id = '$userID' LIMIT 1";
+		$query = "SELECT password, username FROM user WHERE id = '$userID' LIMIT 1";
 
 		$pwd = mysqli_query($conn, $query);
-
+		
 		//if there is password stored there is something wrong
 		if(mysqli_num_rows($pwd) == 0){
 			$status = 5;
@@ -54,10 +54,13 @@ try{
 		}
 		
 		//if md5 of password entered is different from stored password status 6 wrong password 
-		if(md5($password) !== mysqli_fetch_array($pwd)["password"]){
+
+		$row = mysqli_fetch_array($pwd);
+		if(md5($password) !== $row["password"]){
 			$status = 6;
 			goto end;
 		}
+		$username =  $row["username"];
 
 		//if stay is set (by checking the keep me logged in box)
 		//

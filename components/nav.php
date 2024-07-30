@@ -14,7 +14,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
 include "conn.php";
-    session_start();
+	session_start();
 
     if (session_status() == PHP_SESSION_ACTIVE) {
         if (isset($_SESSION["uid"]) && isset($_SESSION["username"])) {

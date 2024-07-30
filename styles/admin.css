@@ -2,12 +2,50 @@
 	display:flex;
 	height:91vh;
 }
-#main * {
-
-}
 #panel{
-	width:90%;
+	width:85%;
+	background-color:var(--fg);
+	border-radius:var(--gbr);
+	border:2px solid var(--g1);
+	padding:var(--gp);
+	margin-right:var(--gp);
 }
+
 #sidebar{
 	flex-direction:column !important;
+	width:15%;
+}
+
+#cp1 table{
+	width:100%;
+
+}
+#cp1 table tr{
+	width:100%;
+
+}
+
+
+#cp1 table tr:first-of-type{
+	position:relative;
+}
+#cp1 table tr:first-of-type td{
+	position:  relative;
+
+}
+#cp1 table tr:first-of-type:before{	
+ 	content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid black;
+        z-index: 2;
+	
+}
+
+#cp1 table tr td{
+	width:calc(100% / 8);
+	background-color:red;
 }
