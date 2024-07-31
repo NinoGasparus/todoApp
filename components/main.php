@@ -28,7 +28,15 @@
 		
 		$query ="";
 		if($displayMode == 0){
-			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY ends DESC,  importance DESC";
+			//$query="SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN deadline = CURDATE() THEN 0 WHEN importance = -1 THEN 2 ELSE 1 END, ends ASC, importance DESC";
+
+			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN importance = -1 THEN 2 WHEN DATE(ends) = CURDATE() THEN 0 ELSE 1 END, ends ASC, importance DESC";
+
+			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN importance = -1 THEN 1 ELSE 0 END, ends DESC, importance DESC";
+			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 AND CURDATE() = DATE(deadline)";	
+			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY ends ASC,  importance DESC";
+			//
+			$query = "(SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND deadline = CURDATE()) UNION ALL (SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND NOT importance = -1 ORDER BY  ends ASC, importance DESC)";
 		}else if($displayMode == 1){
 			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 1 ORDER BY ends";
 		}else if($displayMode == 2){
@@ -50,7 +58,8 @@
 				$row = mysqli_fetch_array($res);
 				$taskType = $row["typeof"];
 					switch($taskType){
-						case "1": makeTask1($row,$displayMode);break;
+					case "1": makeTask1($row,$displayMode);break;
+					case "2": makeTask2($row,$displayMode);break;
 					}
 	
 			}
@@ -104,6 +113,55 @@
 
 			</div>";
 	}
+
+
+function  makeTask2($row,$displayMode){
+		$title = $row["title"];
+		$text = $row["text"];
+		$timeCreated = $row["timeCreated"];
+		$importance = "importanceClass".$row["importance"];
+		$complete = $row["complete"];
+		$taskID = $_SESSION["uid"]."_".$row["taskId"];
+		$taskIntID = $row["taskId"];
+		$ends =  $row["ends"];
+		
+		$today = new DateTime();
+    
+		$future = new DateTime($ends);
+    		$diff = $today->diff($future);
+		$timeLeft = $diff->days;
+
+		if($timeLeft == 0){
+			$importance = "importanceClass5";
+		}
+		echo "<div class='task $importance'>
+				<h1 class='taskTitle' id='$taskID'> $title </h1>
+					<div>$text </div>
+					<div style='display:flex; flex-direction:row'>
+						<div class='completeTask'>";
+		if($displayMode == 0){
+			echo "
+							<form action='components/completeTask.php' method='POST'>
+								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
+							</form>
+							<p style='color:red; font-weight:bold'>$timeLeft days left </p>";}
+		else if($displayMode == 1){
+			echo "				<form action='components/delTask.php' method='POST'>
+								<button type='submit' name='taskID' value='$taskIntID' > Delete task </button> 
+							</form>";
+	
+		}
+
+			echo "			</div>
+	
+						<div style='margin-left:auto' class='taskTimeStamp'>
+							Created on $timeCreated	
+						</div>
+					</div>
+
+			</div>";
+	}
+
 
 ?>
 

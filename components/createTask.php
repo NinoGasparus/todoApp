@@ -36,6 +36,7 @@ try{
 	
 	switch($taskType){
 	case "1":createTask1();break;
+	case "2":createTask2();break;
 	}
 
 
@@ -74,7 +75,22 @@ function createTask1(){
 
 		
 		$query = "INSERT INTO tasks(typeof, title, text,importance, user_id, ends) VALUES ('1', '$taskTitle', '$taskDesc', '$taskIm', '$uid', '$taskEnd')";
-		$res = mysqli_query($conn, $query);
+		mysqli_query($conn, $query);
 }
 
+function createTask2(){
+	include "conn.php";
+	$uid = $_SESSION["uid"];
+	
+	$taskTitle  = $conn->real_escape_string($_POST["title"]);
+	$taskDesc = $conn->real_escape_string($_POST["desc"]);
+	$taskIm = -1;
+	$taskEnd = $conn->real_escape_string($_POST["date"]);
+
+	$query= "INSERT  INTO tasks(typeof, title, text, importance, user_id, deadline) VALUES('2', '$taskTitle','$taskDesc', '$taskIm','$uid', '$taskEnd')";
+	mysqli_query($conn,$query);
+
+
+
+}
 ?>
