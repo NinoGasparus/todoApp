@@ -9,6 +9,7 @@
 	border:2px solid var(--g1);
 	padding:var(--gp);
 	margin-right:var(--gp);
+	margin-bottom:var(--gp);
 }
 
 #sidebar{
@@ -52,4 +53,31 @@ table tr:first-of-type:before{
 table tr td{
 	width:calc(100% / 8);
 	background-color:red;
+}
+#cp3{
+	height:100%;
+}
+
+#cli{
+	background-color:black;
+	width:calc(100% - 2 * var(--gp));
+	height:calc(100% - 2 * var(--gp));
+	
+	border-radius:var(--gbr);
+	color:white;
+	padding:var(--gp);
+	display:flex;
+}
+
+#cline{	
+	margin-top:auto;
+	margin-right:auto;
+	color:white;
+	width:100%;
+	display:flex;
+	flex-direction:row;
+}
+
+#clineinput:focus {
+	outline:none
 }

@@ -42,6 +42,6 @@ end:
 		Header("Location: /err.php");
 	}
 	else{
-		Header("Location: /components/admin.php");
+		Header("Location: /components/admin.php?display=1");
 	}
 ?>

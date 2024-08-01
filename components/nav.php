@@ -10,10 +10,12 @@
     
 <?php 
 
+include "conn.php";
+if(debug == true){
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
-include "conn.php";
+}
 	session_start();
 
     if (session_status() == PHP_SESSION_ACTIVE) {
@@ -63,7 +65,7 @@ include "conn.php";
         if (isset($_SESSION["isAdmin"])) {
             if ($_SESSION["isAdmin"] == 1) {
                 echo '
-                <form action="/components/admin.php" method="POST">
+                <form action="/components/admin.php?display=0" method="POST">
                     <button type="submit" name="blank" value="">Control pane</button>
                 </form>';
             }

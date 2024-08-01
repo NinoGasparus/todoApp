@@ -96,7 +96,7 @@
 							<form action='components/completeTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
-							<p style='color:red; font-weight:bold'>$timeLeft days left </p>";}
+							<p style='color:black; font-weight:bold'>$timeLeft days left </p>";}
 		else if($displayMode == 1){
 			echo "				<form action='components/delTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Delete task </button> 
@@ -144,7 +144,7 @@ function  makeTask2($row,$displayMode){
 							<form action='components/completeTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
-							<p style='color:red; font-weight:bold'>$timeLeft days left </p>";}
+							<p style='color:black; font-weight:bold'>$timeLeft days left </p>";}
 		else if($displayMode == 1){
 			echo "				<form action='components/delTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Delete task </button> 

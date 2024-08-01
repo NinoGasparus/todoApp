@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	document.querySelector(target).click();
 		
-	
+
+
+	document.getElementById("clineinput").focus();
+
+
 	const userActionsButton = document.getElementById("usermenu");
 	const userActionsMenu = document.getElementById("userActions");
 	
@@ -126,10 +131,16 @@ session_write_close();
 				</tr>	
 
 			<?php
-				ini_set('display_errors', '1');
-				ini_set('display_startup_errors', '1');
-				error_reporting(E_ALL); 
-				include "conn.php";
+
+
+				include "conn.php"; 
+				if(debug == true){
+					ini_set('display_errors', '1');
+					ini_set('display_startup_errors', '1');
+					error_reporting(E_ALL); 
+				}
+
+
 				$status = 0;
 
 				session_start();
@@ -205,10 +216,13 @@ session_write_close();
 				</tr>	
 
 			<?php
-				ini_set('display_errors', '1');
-				ini_set('display_startup_errors', '1');
-				error_reporting(E_ALL); 
+				
 				include "conn.php";
+				if(debug == true){
+					ini_set('display_errors', '1');
+					ini_set('display_startup_errors', '1');
+					error_reporting(E_ALL); 
+				}
 				$status = 0;
 				
 				if(session_status() != PHP_SESSION_ACTIVE){
@@ -267,20 +281,37 @@ session_write_close();
 	
 		</div>	
 		<div id="cp3" class="panel">
-			controll3
-		</div>	
+			<div id="cli"> 
+				
+				<?php
+					$query = "select * from tasks"; 
+					$res = mysqli_query($conn, $query);
+					echo $res;
+?>
+				<div id="cline">
+					>
+					<div contenteditable="true" id="clineinput">
+					
+					</div>
+				</div>
+				
+			</div>
+			
+			</div>	
 	</div>
 
 </div>
 </body>
 </html>
 
-
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL); 
+
 include "conn.php";
+if(debug == true){			
+	ini_set('display_errors', '1');
+	ini_set('display_startup_errors', '1');
+	error_reporting(E_ALL); 
+}	
 ?>
 <?php
 $status = 0;
@@ -312,7 +343,11 @@ try{
 	session_write_close();
 			
 }catch(Exception $e){
-	echo "err" . $e;
+	if(debug ==true){
+		echo "err" . $e;
+	}else{
+		Header("Location: /err.php");
+	}
 }
 
 end:
@@ -323,11 +358,17 @@ end:
 //4 not admin 
 //
 if($status != 0){
-	Header("Location: /err.php");
+	if(debug == true){
+		echo $status;
+	}else{
+		Header("Location: /err.php");
+	}
 }else{
 
 }
 
 ?>
+
+
 
 
