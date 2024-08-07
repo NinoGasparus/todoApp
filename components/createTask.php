@@ -55,8 +55,8 @@ if($status != 0){
 		case 2:  $err = "Type invalid";break;
 		case 3:  $err = "User not logged in";break;
 	}
-	echo $err;
 	
+	echo $err;
 }else{
 	echo "ok";
 	Header("Location: /index.php");

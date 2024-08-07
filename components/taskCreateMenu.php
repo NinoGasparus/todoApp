@@ -12,16 +12,16 @@
 	
 		if(mysqli_num_rows($res) !=  1){
 			$err = true;
-			echo "1";
+			#echo "1";
 		}else{
 			if(mysqli_fetch_array($res)["username"] != $uname){
 				$err = true;
-				echo "2";
+				#echo "2";
 			}	
 		}
 	}else{
 		$err = true;
-		echo "3";
+		#echo "3";
 	}
 ?>
 

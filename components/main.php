@@ -71,7 +71,7 @@
 	}
 	
 
-	function makeTask1($row, $displayMode){
+function makeTask1($row, $displayMode){
 		$title = $row["title"];
 		$text = $row["text"];
 		$timeCreated = $row["timeCreated"];

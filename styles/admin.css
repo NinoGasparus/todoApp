@@ -81,3 +81,8 @@ table tr td{
 #clineinput:focus {
 	outline:none
 }
+#clineinput {
+	color:white;
+	border:none;
+	background-color:black;
+}

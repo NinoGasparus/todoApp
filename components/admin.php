@@ -134,7 +134,7 @@ session_write_close();
 
 
 				include "conn.php"; 
-				if(debug == true){
+				if($debug == true){
 					ini_set('display_errors', '1');
 					ini_set('display_startup_errors', '1');
 					error_reporting(E_ALL); 
@@ -188,7 +188,7 @@ session_write_close();
 						<td><button type='submit'> Save </button></form></td>
 					
 						<td>
-							<form action='adminDelUSR.php' method='POST' id='aauserDelButton'>
+							<form action='adminDelUSR.php' method='POST' id='userDelButton'>
 								<input type='hidden' name='targetID' value='$uid'>
 								<button type='submit'> Delete user </button> 
 							</form> 
@@ -218,7 +218,7 @@ session_write_close();
 			<?php
 				
 				include "conn.php";
-				if(debug == true){
+				if($debug == true){
 					ini_set('display_errors', '1');
 					ini_set('display_startup_errors', '1');
 					error_reporting(E_ALL); 
@@ -284,15 +284,22 @@ session_write_close();
 			<div id="cli"> 
 				
 				<?php
-					$query = "select * from tasks"; 
-					$res = mysqli_query($conn, $query);
-					echo $res;
-?>
+				if(session_status() != PHP_SESSION_ACTIVE){
+					session_start();
+				}
+				if(isSet($_SESSION["uid"]) && isSet($_SESSION["res"])){
+					echo $_SESSION["res"];
+				}
+				
+				?>
 				<div id="cline">
+						
 					>
-					<div contenteditable="true" id="clineinput">
+					<form action="adminSQLQuery.php" method="POST" id="adminsql">
+					<input type="text" id="clineinput" name="query" style="width:100%">
 					
-					</div>
+					</input>
+					</form>
 				</div>
 				
 			</div>
@@ -307,7 +314,7 @@ session_write_close();
 <?php
 
 include "conn.php";
-if(debug == true){			
+if($debug == true){			
 	ini_set('display_errors', '1');
 	ini_set('display_startup_errors', '1');
 	error_reporting(E_ALL); 
@@ -343,7 +350,7 @@ try{
 	session_write_close();
 			
 }catch(Exception $e){
-	if(debug ==true){
+	if($debug ==true){
 		echo "err" . $e;
 	}else{
 		Header("Location: /err.php");
@@ -358,7 +365,7 @@ end:
 //4 not admin 
 //
 if($status != 0){
-	if(debug == true){
+	if($debug == true){
 		echo $status;
 	}else{
 		Header("Location: /err.php");
