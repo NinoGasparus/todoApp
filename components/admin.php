@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', function(){
 	if(GET("display") != ""){
 		target =  "#selector"+GET("display");
 	}
-
 	document.querySelector(target).click();
 		
 
 
-	document.getElementById("clineinput").focus();
-
+	if(GET("display") == "2"){
+		document.getElementById("clineinput").focus();
+	}
 
 	const userActionsButton = document.getElementById("usermenu");
 	const userActionsMenu = document.getElementById("userActions");
@@ -96,6 +96,10 @@ function showPanel(id, sender){
 			i.style.display = "none";
 		}
 	}	
+	if(GET("display") == "2"){
+		document.getElementById("clineinput").focus();
+	}
+
 }
 
 
@@ -282,7 +286,7 @@ session_write_close();
 		</div>	
 		<div id="cp3" class="panel">
 			<div id="cli"> 
-				
+				<div>
 				<?php
 				if(session_status() != PHP_SESSION_ACTIVE){
 					session_start();
@@ -292,6 +296,7 @@ session_write_close();
 				}
 				
 				?>
+				</div>
 				<div id="cline">
 						
 					>

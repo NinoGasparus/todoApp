@@ -51,8 +51,12 @@ try{
 	
 	$query = $conn->real_escape_string($_POST["query"]);
 	$query = trim($query);
+	
+	if(strToLower($query) == "clear"){
+		$_SESSION["res"] = "";
+		goto end;
+	}
 
-	$type = strtoupper(strtok($query, " "));
 	try{
 		if (mysqli_query($conn, $query)){
         		$_SESSION["res"] .= "Query executed successfully.<br>";
@@ -63,7 +67,6 @@ try{
 
 		$_SESSION["res"] .= $e. "</br>";
 	}
-	Header("Location: /components/admin.php?display=2");	
 }catch(Exception  $e){
 	if($debug == true){
 		echo "skill issue";
@@ -75,6 +78,9 @@ try{
 
 end:
 if($debug == true){
+	if($status == 0){
+		Header("Location: /components/admin.php?display=2");	
+	}
 	if($status != 0){
 		echo $status;
 	}
