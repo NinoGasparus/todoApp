@@ -1,8 +1,13 @@
 <?php
+
+include $_SERVER['DOCUMENT_ROOT']. "/scripts/universal/conn.php";
+?>
+<?php
+if($debug == true){
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
-
+}
 
 
 
@@ -65,7 +70,7 @@ if($status != 0){
 
 function createTask1(){
 		
-		include "conn.php";
+		include $_SERVER['DOCUMENT_ROOT']. "/scripts/universal/conn.php";
 		$uid = $_SESSION["uid"];
 
 		$taskTitle = $conn->real_escape_string($_POST["title"]);
@@ -79,7 +84,8 @@ function createTask1(){
 }
 
 function createTask2(){
-	include "conn.php";
+
+	include $_SERVER['DOCUMENT_ROOT']. "/scripts/universal/conn.php";
 	$uid = $_SESSION["uid"];
 	
 	$taskTitle  = $conn->real_escape_string($_POST["title"]);

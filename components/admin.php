@@ -5,14 +5,14 @@
 	<link rel="stylesheet" href="/styles/main.css">
 	<link rel="stylesheet" href="/styles/nav.css">
 	<link rel="stylesheet" href="/styles/admin.css">
-
+<script src="/js/nav.js"></script>
 <script src="/js/admin/admin.js"></script>
 <script src="/js/admin/listeners.js"></script>
 </head>
 
 <body>
 <?php
-include "nav.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/components/nav.php";
 session_write_close();
 ?>
 <div id="main">
@@ -35,8 +35,7 @@ session_write_close();
 </html>
 
 <?php
-
-include "conn.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
 if($debug == true){			
 	ini_set('display_errors', '1');
 	ini_set('display_startup_errors', '1');

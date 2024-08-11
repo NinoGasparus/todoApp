@@ -1,20 +1,21 @@
 <div id="navbar">
     <div class="markDiv"><a href="/index.php">Todo<sup>2</sup></a></div>
-    
+<?php
+
+if(basename($_SERVER["PHP_SELF"]) == "index.php"){
+echo'
     <div id="searchbar">
         <form action="" method="GET"> 
             <input type="text" name="searchquery" placeholder="Type here to search">
             <button type="submit">Find</button>
         </form>
-    </div>
-    
-<?php 
-
-include "conn.php";
+    </div>';
+}
+include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
 if($debug == true){
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL); 
+	ini_set('display_errors', '1');
+	ini_set('display_startup_errors', '1');
+	error_reporting(E_ALL); 
 }
 	session_start();
 

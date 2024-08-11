@@ -1,9 +1,11 @@
 <?php
+include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
+if($debug == true){
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
-include "conn.php"; ?>
-
+}
+?>
 <?php
 	if(session_status() != PHP_SESSION_ACTIVE){
 		session_start();

@@ -69,6 +69,12 @@ table tr td{
 	display:flex;
 	flex-direction:column;
 }
+#cli p{
+	margin:0px;
+}
+#cli-scroller{
+	overflow-y:auto
+}
 
 #cline{	
 	margin-top:auto;

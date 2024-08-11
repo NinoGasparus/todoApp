@@ -27,16 +27,16 @@ error_reporting(E_ALL);
 
 <body>
 <?php 
-include "components/nav.php";
+
+include $_SERVER["DOCUMENT_ROOT"]."/components/nav.php";
 ?>
 
 <div style="display:flex;height:91vh">
 
 	<?php
-	
 		include "components/side.php";
 		include "components/main.php";
-		include "components/taskCreateMenu.php";
+		include "scripts/main/taskCreateMenu.php";
 	?>
 
 

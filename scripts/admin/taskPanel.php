@@ -20,7 +20,7 @@
 
 <?php
 function loadTasks(){	
-	include "conn.php";
+	include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
 	if($debug == true){
 		ini_set('display_errors', '1');
 		ini_set('display_startup_errors', '1');
@@ -67,7 +67,7 @@ function loadTasks(){
 			<td>$tid</td>
 			<td>$author</td>
 			<td>
-				<form action='adminDelTSK.php' method='POST' id='aauserDelButton'>
+				<form action='../scripts/admin/adminDelTSK.php' method='POST' id='aauserDelButton'>
 					<input type='hidden' name='targetID' value='$tid'>
 					<button type='submit'> Delete task </button> 
 				</form> 

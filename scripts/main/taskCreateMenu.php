@@ -28,13 +28,16 @@
 
 
 <div id="createTaskMenu" style="display:none;right:0px; bottom:0px">
-	<h2> Create a new task </h2>
+	<div style="display:flex; flex-direction:row">
+		<h2> Create a new task </h2>
+		<button onClick="createTask()"> Close </button>
+	</div>
 	<?php 
 		if($err ==  true){
 			echo "Not logged in or info is invalid. Please log in or tasks will not be saved";
 		}
 		if(!$err){
-			echo '<form action="components/createTask.php" method="POST">';
+			echo '<form action="/scripts/main/createTask.php" method="POST">';
 		}else{
 			echo  '<form action="" method="POST">';
 

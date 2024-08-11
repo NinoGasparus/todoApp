@@ -1,26 +1,24 @@
 <div id="taskcontainer" style="overflow-y:auto; width:100%">
 
 <?php 
+	include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
 ?>
-
 <?php
 	// 0->active tasks, 1-> completed tasks, 2-> search tasks
 		
 	$displayMode = 0;
 
-	if(empty($_GET)){	
-	}else if(isSet($_GET["displayMode"])){
-		if($_GET["displayMode"] == 1);
-		{
-			$displayMode = 1;
-		}
-	}else if(isSet($_GET["searchquery"])){
-		if($_GET["searchquery"] != ""){
-			$displayMode = 2;
-		}
+	if(!empty($_GET)){
+		if(isSet($_GET["displayMode"]) && !isSet($_GET["searchquery"])){
+			if($_GET["displayMode"] == 1){
+				$displayMode = 1;
+			}
+		}else if(isSet($_GET["searchquery"])){
+			if($_GET["searchquery"] != ""){
+				$displayMode = 2;
+			}
+		}	
 	}
-
-
 	if(!isSet($_SESSION["uid"])){goto end;};
 
 	if($_SESSION["uid"] && $_SESSION["uid"] != ""){
@@ -28,14 +26,6 @@
 		
 		$query ="";
 		if($displayMode == 0){
-			//$query="SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN deadline = CURDATE() THEN 0 WHEN importance = -1 THEN 2 ELSE 1 END, ends ASC, importance DESC";
-
-			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN importance = -1 THEN 2 WHEN DATE(ends) = CURDATE() THEN 0 ELSE 1 END, ends ASC, importance DESC";
-
-			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY CASE WHEN importance = -1 THEN 1 ELSE 0 END, ends DESC, importance DESC";
-			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 AND CURDATE() = DATE(deadline)";	
-			//$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 0 ORDER BY ends ASC,  importance DESC";
-			//
 			$query = "(SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND deadline = CURDATE()) UNION ALL (SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND NOT importance = -1 ORDER BY  ends ASC, importance DESC)";
 		}else if($displayMode == 1){
 			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 1 ORDER BY ends";
@@ -93,12 +83,12 @@ function makeTask1($row, $displayMode){
 						<div class='completeTask'>";
 		if($displayMode == 0){
 			echo "
-							<form action='components/completeTask.php' method='POST'>
+							<form action='scripts/main/completeTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
 							<p style='color:black; font-weight:bold'>$timeLeft days left </p>";}
 		else if($displayMode == 1){
-			echo "				<form action='components/delTask.php' method='POST'>
+			echo "				<form action='scripts/main/delTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Delete task </button> 
 							</form>";
 	

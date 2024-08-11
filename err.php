@@ -17,38 +17,12 @@
 				margin-top:calc(var(--gm) * 2);
 			}
 		</style>
-
+	<script src="js/nav.js"></script>
 	<script>
 
 		document.addEventListener('DOMContentLoaded', function(){
-			const userActionsButton = document.getElementById("usermenu");
-			const userActionsMenu = document.getElementById("userActions");
-		
-			let timeout;
-	
-			userActionsMenu.addEventListener("mouseover", function(){
-				clearTimeout(timeout);
-				userActionsMenu.style.display = "flex";
-		
-			})
-
-			userActionsMenu.addEventListener("mouseout", function(){
-				timeout = setTimeout(()=>{
-					userActionsMenu.style.display = "none";
-				},100)
-			})
-	
-			userActionsButton.addEventListener("mouseover", function(){
-				userActionsMenu.style.display = "flex";
-			})
-		
-			userActionsButton.addEventListener("mouseout", function(){
-				timeout = setTimeout(()=>{
-					userActionsMenu.style.display = "none";
-				},100)
-				})
-
-		}) 
+			addMenuListeners()
+		})
 
 </script>
 </head>

@@ -22,7 +22,7 @@
 
 <?php
 function listUsers(){
-	include "conn.php"; 
+	include $_SERVER["DOCUMENT_ROOT"] . "/scripts/universal/conn.php";
 	if($debug == true){
 		ini_set('display_errors', '1');
 		ini_set('display_startup_errors', '1');
@@ -63,7 +63,7 @@ function listUsers(){
 			<td>$uid</td>
 			<td>$numOfTasks</td>
 			<td>
-				<form action='adminSetPWD.php' method='POST'>
+				<form action='../scripts/admin/adminSetPWD.php' method='POST'>
 					<input type='text' name='newPassword'>
 					<input type='hidden' name='targetID' value='$uid'>
 			</td>
@@ -71,7 +71,7 @@ function listUsers(){
 			<td><button type='submit'> Save </button></form></td>
 		
 			<td>
-				<form action='adminDelUSR.php' method='POST' id='userDelButton'>
+				<form action='../scripts/admin/adminDelUSR.php' method='POST' id='userDelButton'>
 					<input type='hidden' name='targetID' value='$uid'>
 					<button type='submit'> Delete user </button> 
 				</form> 
