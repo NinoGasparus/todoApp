@@ -54,10 +54,18 @@ try{
 	}
 
 	$query = $_POST["query"];
+	//remove any leading or ending spaces
 	$query = trim($query);
-
+	//if last char is ; remove it (allows queries to end with ; and  stil be valid)
+	$query = rtrim($query, ';');
 	$type = strtoupper(strtok($query, " "));
-	
+
+
+	if(!isSet($_SESSION["res"]) || empty($_SESSION["res"])){
+		$_SESSION["res"] == "";
+	}
+
+
 	if(strToLower($query) == "clear"){
 		$_SESSION["res"] = "";
 		goto end;
@@ -66,15 +74,17 @@ try{
 	//query execution
 	try{
 		$res;
+		$_SESSION["res"] .= $query . "<br>";
 		if ($res =mysqli_query($conn, $query)){
-
+			include "responses.php";
 			switch($type){
-				case 'SELECT':	break;
-				case 'DELETE':	break;
-				case 'UPDATE': 	break;
-				case 'INSERT':	break;
-				case 'DROP':	break;
-				case 'ALTER':	break;
+				case 'SELECT':	$_SESSION["res"] .= resSelect($res); break;
+				case 'DELETE':	$_SESSION["res"] .= resDelete($res,mysqli_affected_rows($conn)); break;
+				case 'UPDATE':	$_SESSION["res"] .= resDelete($res,mysqli_affected_rows($conn)); break;
+				case 'INSERT':	$_SESSION["res"] .= resInsert($res,mysqli_affected_rows($conn)); break;
+				case 'DROP':	$_SESSION["res"] .= resDrop($res, mysqli_affected_rows($conn)); break;
+				case 'ALTER':	$_SESSION["res"] .= resAlter($res, mysqli_affected_rows($conn)); break;
+				case 'DESCRIBE':$_SESSION["res"] .= resDescribe($res, mysqli_affected_rows($conn)); break;
 				default:	$_SESSION["res"] .= "<p style='color:green'>Query executed successfully.</p><br>";
 			}
 
@@ -87,11 +97,11 @@ try{
 		}else{
 			$_SESSION["res"] .= "<p style='color:red'>Something  went  wrong...</p></br>";
 		}
-	}finally{
-		if($debug == true){
+	}
+	if($debug == true){
 			echo $query  . "<br>";
-			$status = 1;
-		}
+			#$status = 4;
+	
 	}	
 }catch(Exception  $e){
 	if($debug == true){

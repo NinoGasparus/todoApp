@@ -1,6 +1,6 @@
 <?php
 
-include "components/conn.php"; 
+include $_SERVER["DOCUMENT_ROOT"]. "/scripts/universal/conn.php"; 
 if($debug == true){
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');

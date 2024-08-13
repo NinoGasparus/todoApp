@@ -38,7 +38,7 @@ table tr:first-of-type td{
 	position:  relative;
 
 }
-table tr:first-of-type:before{	
+table:not(#cli table) tr:first-of-type:before {
  	content: "";
         position: absolute;
         top: 0;
