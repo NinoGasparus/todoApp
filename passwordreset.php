@@ -1,12 +1,15 @@
 <?php
+
+
+include $_SERVER["DOCUMENT_ROOT"] . "scripts/universal/conn.php";
+if($debug == true){
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); 
-include "components/conn.php"; ?>
+}
 
-
-<?php 
-
+?>
+<?php
 try{
 	$phash = true;
 	if(!empty($_POST)){
