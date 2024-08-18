@@ -131,12 +131,12 @@ function  makeTask2($row,$displayMode){
 						<div class='completeTask'>";
 		if($displayMode == 0){
 			echo "
-							<form action='components/completeTask.php' method='POST'>
+							<form action='scripts/main/completeTask.php' method="POST">
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
 							<p style='color:black; font-weight:bold'>$timeLeft days left </p>";}
 		else if($displayMode == 1){
-			echo "				<form action='components/delTask.php' method='POST'>
+			echo "				<form action='scripts/main/delTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Delete task </button> 
 							</form>";
 	

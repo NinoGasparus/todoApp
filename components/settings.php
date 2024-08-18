@@ -18,69 +18,35 @@ error_reporting(E_ALL);
 	
 
 	if(!empty($_POST)){
-		if(!isSet($_SESSION["uid"])){
-			$status = 2;
-			goto end;	
+		if(session_status() !== PHP_SESSION_ACTIVE){
+			session_start();
 		}
-
-		$uid = $conn->real_escape_string($_SESSION["uid"]);
-		
-		$query = "SELECT id FROM user WHERE id = '$uid'";
-		if(mysqli_num_rows(mysqli_query($conn, $query)) != 1){
-			$status = 3;
-			goto  end;
+		if(!isSet($_SESSION["uid"]) || !isSet($_SESSION["username"])){
+			$status = 1;
+			goto end;
 		}
-		
 		if(!isSet($_POST["oldPassword"])){
-			$status  = 4;
-			goto end;
-		}
-		if(trim($_POST["oldPassword"]) == ""){
-			$status = 5;
+			$status = 2;
 			goto end;
 		}
 
-		$query = "SELECT password FROM user  WHERE id = '$uid'";
-		$res  = mysqli_query($conn, $query);
-		$password = mysqli_fetch_array($res)["password"];
+		$uname	= $conn->real_escape_string($_SESSION["username"]);
+		$uid 	= $conn->real_escape_string($_SESSION["uid"]);
+		$testPassword = $conn->real_escape_string($_POST["oldPassword"]);
+
+		$testQuery =  "SELECT password FROM user WHERE id = '$uid'";
+		$res = mysqli_query($conn, $testQuery);
 		
-		if($password  !=  md5($_POST["oldPassword"])){
-			$status =  6;
+		if(mysqli_num_rows($res) != 1){
+			$status = 3;
 			goto end;
 		}
-
-		//all ok
-
-		if(isSet($_POST["uname"]) && $_POST["uname"] != ""){
-			$uname = $conn->real_escape_string($_POST["uname"]);
-
-			$query = "UPDATE user SET username  = '$uname' WHERE id = '$uid'";
-			try{
-				mysqli_query($conn, $query);
-				
-			}catch(Exception $e){	
-				$status = 7;
-				goto end;	
-			}
+		$realPassword = mysqli_fetch_array($res)["password"];
+		
+		if($realPassword != md5($testPassword)){
+			$status = 4;
+			goto end;
 		}
-
-		if(isSet($_POST["password"]) && isSet($_POST["passwordVerify"])){
-			if($conn->real_escape_string($_POST["password"]) != $conn->real_escape_string($_POST["passwordVerify"])){
-				$status = 8;
-				goto end;
-			}
-			$NewPWD = md5($conn->real_escape_string($_POST["password"]));
-			$query = "UPDATE  user SET password = '$NewPWD' WHERE id = '$uid'";
-			try{
-				mysqli_query($conn, $query);
-				
-			}catch(Exception $e){	
-				$status =  9;
-				goto end;	
-			}
-	
-		}
-	
 	}	
 
 
@@ -130,7 +96,8 @@ error_reporting(E_ALL);
 	<h1> <?php
        		if($status != 0){
 			switch($status){
-			case 6: echo "Failed saving changes,  Password incorrect"; break;
+			case 0: echo "Saved  sucessfully";break;
+			case 4: echo "Failed saving changes,  Password incorrect"; break;
 			case 7: echo "Failed saving changes, Username  already exists!"; break;
 			case 8: echo "Failed saving changes, Passwords do  not match!";break;
 			default: echo  "Something went wrong,  try again later"; break;

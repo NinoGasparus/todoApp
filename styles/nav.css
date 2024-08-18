@@ -28,7 +28,14 @@ justify-items:center;
 align-items:center;
 border:1px solid var(--g1);
 
-
+@media (max-width:1000px){
+	#navbar button{
+		display:none;
+	}
+	#searchbar {
+		display:none;
+	}
+}
 
 
 }
