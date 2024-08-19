@@ -111,7 +111,7 @@ error_reporting(E_ALL);
 	end:
 	if($status != 0){
 		if($debug == true){
-			echo $status;
+		#	echo $status;
 		}else{
 			Header("Location:  /err.php");
 		}
