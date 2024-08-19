@@ -11,9 +11,9 @@ Current functionality:
 	-completed tasks view,  
 	-searching tasks,  
 	-deleting completed tasks,  
+	-user account settings,     
 Todo:  
 	-more task types,  
-	-user account settings,     
 	-ui and ux improvements  
 	--Add redirections to err.php whenever error occurs,  
 	--close the session within navbar after use and fix all dependencies which might broken.   
