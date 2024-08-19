@@ -60,12 +60,21 @@ border-radius:var(--gbr)
 }
 
 #createTaskMenu{
-background-color:red;
-padding:var(--gp);
+	background-color:var(--fg);
+	padding:var(--gp);
+	border-radius:var(--gbr);
+	border:1px  solid  var(--g1);
+	position:absolute;
 
-position:absolute;
 
-
+}
+#closeButton{
+	margin-left:auto;
+	background-color:var(--fg);
+	padding:var(--gp);
+	border-radius:var(--gbr);
+	border:1px  solid  var(--g1);
+	color:var(--wh);
 }
 #createTaskMenu h2{
 	padding:0px !important;

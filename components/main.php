@@ -26,17 +26,19 @@
 		
 		$query ="";
 		if($displayMode == 0){
-			$query = "(SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND deadline = CURDATE()) UNION ALL (SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND NOT importance = -1 ORDER BY  ends ASC, importance DESC)";
+			$query = "(SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND deadline = CURDATE())UNION ALL (SELECT * FROM tasks WHERE user_id = '$uid' AND complete =  0 AND NOT importance = -1) ORDER BY ends ASC, importance DESC";
+
 		}else if($displayMode == 1){
 			$query = "SELECT * FROM tasks WHERE user_id = '$uid' AND complete = 1 ORDER BY ends";
 		}else if($displayMode == 2){
 			$keyword = strtolower($conn->real_escape_string($_GET["searchquery"]));
 			$query = "SELECT * FROM tasks WHERE LOWER(title) LIKE '%$keyword%' OR LOWER(text) LIKE '%$keyword%'";
 		}
-
 		$res = mysqli_query($conn, $query);
-		
 		$rowCount = mysqli_num_rows($res);
+		
+
+
 		if($rowCount == 0){
 			switch($displayMode){
 				case 0:	echo "No tasks found, create one";break;
@@ -44,9 +46,8 @@
 				case 2: echo "No matches found";break;
 			}
 		}else{
-			for($i = 0; $i < $rowCount;  $i++){
-				$row = mysqli_fetch_array($res);
-				$taskType = $row["typeof"];
+			while($row = mysqli_fetch_array($res)){
+					$taskType = $row["typeof"];
 					switch($taskType){
 					case "1": makeTask1($row,$displayMode);break;
 					case "2": makeTask2($row,$displayMode);break;
@@ -54,6 +55,11 @@
 	
 			}
 		}
+
+
+
+
+
 
 	}else{
 		end:
@@ -131,7 +137,7 @@ function  makeTask2($row,$displayMode){
 						<div class='completeTask'>";
 		if($displayMode == 0){
 			echo "
-							<form action='scripts/main/completeTask.php' method="POST">
+							<form action='scripts/main/completeTask.php' method='POST'>
 								<button type='submit' name='taskID' value='$taskIntID' > Mark as complete </button> 
 							</form>
 							<p style='color:black; font-weight:bold'>$timeLeft days left </p>";}

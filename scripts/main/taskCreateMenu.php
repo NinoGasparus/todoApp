@@ -30,7 +30,7 @@
 <div id="createTaskMenu" style="display:none;right:0px; bottom:0px">
 	<div style="display:flex; flex-direction:row">
 		<h2> Create a new task </h2>
-		<button onClick="createTask()"> Close </button>
+		<button onClick="createTask()" id="closeButton"> Close </button>
 	</div>
 	<?php 
 		if($err ==  true){

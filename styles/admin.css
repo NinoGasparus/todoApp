@@ -1,6 +1,6 @@
 #main{
 	display:flex;
-	height:91vh;
+	min-height:91vh;
 }
 #panel{
 	width:85%;
@@ -52,9 +52,17 @@ table:not(#cli table) tr:first-of-type:before {
 
 table tr td{
 	width:calc(100% / 8);
-	background-color:red;
+	background-color:none;
+}
+#cp1 {
+	overflow-y:auto;
+}
+#cp2 {
+
+	overflow-y:scroll;
 }
 #cp3{
+
 	height:100%;
 }
 
