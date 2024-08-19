@@ -48,7 +48,7 @@
 	<select name="type" id="taskTypeSelector">
 		<option value="1"> ToDo </option>
 		<option value="2"> Reminder </option>
-		<option value="3"> Re-occuring </option>
+	<!--	<option value="3"> Re-occuring </option> -->
 	</select>
 
 	<div id="importanceSelector" style = "display:block">
